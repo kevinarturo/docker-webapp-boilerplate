@@ -5,6 +5,8 @@ services:
         build: ./web_api
         container_name: web_api
         restart: always
+        volumes: 
+            - ./web_api:/web_api
         environment: 
             - APP_NAME=dg_webapi
         expose:
@@ -15,3 +17,9 @@ services:
         restart: always
         ports: 
             - "5555:80"
+    mongodb:
+        build: ./mongodb
+        container_name: mongodb
+        restart: always
+        volumes: 
+            - ./mongodb/data:/data
