@@ -1,0 +1,17 @@
+version: "3.7"
+
+services:
+    web_api:
+        build: ./web_api
+        container_name: web_api
+        restart: always
+        environment: 
+            - APP_NAME=dg_webapi
+        expose:
+            - 8080
+    web_server:
+        build: ./web_server
+        container_name: web_server
+        restart: always
+        ports: 
+            - "5555:80"
