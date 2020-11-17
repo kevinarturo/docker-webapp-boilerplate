@@ -11,12 +11,23 @@ services:
             - APP_NAME=dg_webapi
         expose:
             - 8080
+    web_client:
+        build: ./web_client
+        container_name: web_client
+        stdin_open: true
+        tty: true
+        volumes:
+            - ./web_client:/web_client
+        environment:
+            - CHOKIDAR_USEPOLLING=true
     web_server:
         build: ./web_server
         container_name: web_server
+        volumes:
+            - ./web_client/dist:/var/www/app
         restart: always
         ports: 
-            - "5555:80"
+            - "80:80"
     mongodb:
         build: ./mongodb
         container_name: mongodb
